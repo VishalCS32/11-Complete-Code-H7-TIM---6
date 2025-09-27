@@ -1,9 +1,8 @@
 /*
- * dshot.h
+ * dshot.c
  *
- *
- *  Created on: 2021. 1. 27.
- *      Author: mokhwasomssi
+ * Created on: Sep 25, 2025
+ *      Author: vishal
  *
  */
 

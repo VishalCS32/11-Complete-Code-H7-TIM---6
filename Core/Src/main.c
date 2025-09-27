@@ -33,7 +33,8 @@
 #include "../RECEIVER/FS-iA6B/FS-iA6B.h"
 #include "../LED/MAIN_BOARD_RGB/ws2812.h"
 #include "../HMC5883L/hmc5883l.h"
-#include "dshot.h"
+#include "../FUSION/COMPLEMENTARY/complementary_filter.h"
+#include "../ESC/DShot/dshot.h"
 #include "../CMD/cmd.h"
 #include <string.h>
 #include <stdio.h>
@@ -67,6 +68,8 @@ int _write(int file, char* p, int len)
 /* USER CODE BEGIN PD */
 #define MIN_THROTTLE 240   // Minimum DShot throttle (per protocol)
 #define MAX_THROTTLE 2000 // Maximum DShot throttle (per protocol)
+
+float dt = 1.0f/1000;
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -108,6 +111,10 @@ AircraftLights_t aircraft_lights;
 
 uint16_t my_motor_value[4] = {0, 0, 0, 0}; // Throttle values for 4 motors
 static uint16_t last_dshot_throttle = MIN_THROTTLE; // For throttle smoothing
+
+float roll,pitch,yaw;
+
+Quaternion q;
 
 /* USER CODE END PV */
 
@@ -492,6 +499,9 @@ int main(void)
 	  {
 		  tim7_1ms_flag = 0;
 
+//		  pitch_reference = (iBus.RV - 1500) * 0.1f;
+//		  pitch_error = pitch_reference -
+
 		  ccr1 = 240 + (((iBus.LV - 1000)*10 + (iBus.RV - 1500)*5 + (iBus.RH - 1500)*5 + (iBus.LH - 1500)*5 ) * 0.176); // back left
 		  ccr2 = 240 + (((iBus.LV - 1000)*10 - (iBus.RV - 1500)*5 + (iBus.RH - 1500)*5 - (iBus.LH - 1500)*5 ) * 0.176); // front left
 		  ccr3 = 240 + (((iBus.LV - 1000)*10 + (iBus.RV - 1500)*5 - (iBus.RH - 1500)*5 - (iBus.LH - 1500)*5 ) * 0.176); // back right
@@ -568,7 +578,6 @@ int main(void)
 		  ibus_rx_cplt_flag = 0;
 		  if(iBus_Check_CHKSUM(&ibus_rx_buf[0], 32) == 1)
 		  {
-			  LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_2);
 
 			  iBus_Parsing(&ibus_rx_buf[0], &iBus);
 			  iBus_rx_cnt++;
@@ -617,6 +626,18 @@ int main(void)
 		  ICM42688P.acc_x = ICM42688P.acc_x_raw * 0.0004883f;
 		  ICM42688P.acc_y = ICM42688P.acc_y_raw * 0.0004883f;
 		  ICM42688P.acc_z = ICM42688P.acc_z_raw * 0.0004883f;
+
+		  ComplementaryFilter_Update(&q, ICM42688P.gyro_x, ICM42688P.gyro_y, ICM42688P.gyro_z,
+				  ICM42688P.acc_x, ICM42688P.acc_y, ICM42688P.acc_z, dt);
+
+		  Quaternion_ToEuler(&q, &roll, &pitch);
+
+		  printf("Pitch: %.4f\r\n", pitch);
+
+		  roll *= 180.0f/M_PI;
+		  pitch *= 180.0f/M_PI;
+
+//		  printf("%.4f\r\n", ICM42688P.gyro_x);
 
 		  //		  printf("%d, %d, %d, %d, %d, %d\n",
 		  //				  (int)(ICM42688P.gyro_x*100), (int)(ICM42688P.gyro_y*100), (int)(ICM42688P.gyro_z*100),

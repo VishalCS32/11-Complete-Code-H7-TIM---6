@@ -17,6 +17,9 @@ RM := rm -rf
 -include Core/LED/MAIN_BOARD_RGB/subdir.mk
 -include Core/IMU/ICM42688P/subdir.mk
 -include Core/HMC5883L/subdir.mk
+-include Core/FUSION/YAW/subdir.mk
+-include Core/FUSION/COMPLEMENTARY/subdir.mk
+-include Core/ESC/DShot/subdir.mk
 -include Core/EEPROM/subdir.mk
 -include Core/CMD/subdir.mk
 -include Core/BUZZER/subdir.mk

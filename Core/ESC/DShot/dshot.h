@@ -1,10 +1,10 @@
 /*
- * dshot.h
+ * dshot.c
  *
- *  Created on: 2021. 1. 27.
- *      Author:
+ * Created on: Sep 25, 2025
+ *      Author: vishal
+ *
  */
-
 
 #ifndef __DSHOT_H__
 #define __DSHOT_H__

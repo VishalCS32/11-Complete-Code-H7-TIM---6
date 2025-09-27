@@ -1,0 +1,12 @@
+../Core/ESC/DShot/dshot.c:37:6:dshot_init	1
+../Core/ESC/DShot/dshot.c:44:6:dshot_write	1
+../Core/ESC/DShot/dshot.c:53:17:dshot_choose_type	3
+../Core/ESC/DShot/dshot.c:69:13:dshot_set_timer	1
+../Core/ESC/DShot/dshot.c:96:13:dshot_dma_tc_callback	5
+../Core/ESC/DShot/dshot.c:118:13:dshot_put_tc_callback_function	1
+../Core/ESC/DShot/dshot.c:127:13:dshot_start_pwm	1
+../Core/ESC/DShot/dshot.c:137:17:dshot_prepare_packet	2
+../Core/ESC/DShot/dshot.c:161:13:dshot_prepare_dmabuffer	3
+../Core/ESC/DShot/dshot.c:176:13:dshot_prepare_dmabuffer_all	1
+../Core/ESC/DShot/dshot.c:184:13:dshot_dma_start	1
+../Core/ESC/DShot/dshot.c:192:13:dshot_enable_dma_request	1

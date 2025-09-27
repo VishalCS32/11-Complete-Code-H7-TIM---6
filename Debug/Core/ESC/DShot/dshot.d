@@ -1,4 +1,5 @@
-Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
+Core/ESC/DShot/dshot.o: ../Core/ESC/DShot/dshot.c \
+ ../Core/ESC/DShot/dshot.h ../Core/Inc/tim.h ../Core/Inc/main.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
  ../Core/Inc/stm32h7xx_hal_conf.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h \
@@ -44,16 +45,9 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_gpio.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_dma.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_dmamux.h \
- ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_exti.h \
- ../Core/Inc/dma.h ../Core/Inc/main.h ../Core/Inc/i2c.h \
- ../Core/Inc/octospi.h ../Core/Inc/spi.h ../Core/Inc/tim.h \
- ../Core/Inc/usart.h ../Core/Inc/gpio.h \
- ../Core/Src/../IMU/ICM42688P/icm42688p.h ../Core/Src/../EEPROM/eeprom.h \
- ../Core/Src/../RECEIVER/FS-iA6B/FS-iA6B.h \
- ../Core/Src/../LED/MAIN_BOARD_RGB/ws2812.h \
- ../Core/Src/../HMC5883L/hmc5883l.h \
- ../Core/Src/../FUSION/COMPLEMENTARY/complementary_filter.h \
- ../Core/Src/../ESC/DShot/dshot.h ../Core/Src/../CMD/cmd.h
+ ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_exti.h
+../Core/ESC/DShot/dshot.h:
+../Core/Inc/tim.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:
 ../Core/Inc/stm32h7xx_hal_conf.h:
@@ -101,19 +95,3 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_dma.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_dmamux.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_exti.h:
-../Core/Inc/dma.h:
-../Core/Inc/main.h:
-../Core/Inc/i2c.h:
-../Core/Inc/octospi.h:
-../Core/Inc/spi.h:
-../Core/Inc/tim.h:
-../Core/Inc/usart.h:
-../Core/Inc/gpio.h:
-../Core/Src/../IMU/ICM42688P/icm42688p.h:
-../Core/Src/../EEPROM/eeprom.h:
-../Core/Src/../RECEIVER/FS-iA6B/FS-iA6B.h:
-../Core/Src/../LED/MAIN_BOARD_RGB/ws2812.h:
-../Core/Src/../HMC5883L/hmc5883l.h:
-../Core/Src/../FUSION/COMPLEMENTARY/complementary_filter.h:
-../Core/Src/../ESC/DShot/dshot.h:
-../Core/Src/../CMD/cmd.h:
